@@ -186,5 +186,9 @@ class Employee:
         return cls.instance_from_db(row) if row else None
 
     def reviews(self):
+        from review import Review
         """Return list of reviews associated with current employee"""
-        pass
+        rows=CURSOR.execute("SELECT * FROM reviews WHERE employee_id=?",(self.id,)).fetchall()
+        return [
+            Review.instance_from_db(row) for row in rows
+            ]
