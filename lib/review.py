@@ -36,7 +36,7 @@ class Review:
     
     @summary.setter
     def summary(self,value):
-        if isinstance(value,str) and len(value)>0:
+        if isinstance(value,str) and len(value)>=1:
             self._summary=value
         else:raise ValueError("Summary must be an integer of length greater 0")
     
