@@ -25,9 +25,9 @@ class Review:
         return self._year
     
     @year.setter
-    def year(self,value):
-        if isinstance(value,int) and value>=2000:
-            self._year=value
+    def year(self,year):
+        if isinstance(year,int) and year>=2000:
+            self._year=year
         else:raise ValueError("Year must be an integer of valu greater than 2000")
    
     @property
@@ -35,9 +35,9 @@ class Review:
         return self._summary
     
     @summary.setter
-    def summary(self,value):
-        if isinstance(value,str) and len(value)>=1:
-            self._summary=value
+    def summary(self,summary):
+        if isinstance(summary,str) and len(summary)>0:
+            self._summary=summary
         else:raise ValueError("Summary must be an integer of length greater 0")
     
     @property
@@ -45,9 +45,9 @@ class Review:
         return self._employee_id
     
     @employee_id.setter
-    def employee_id(self,value):
-        if Employee.find_by_id(value) :
-            self._employee_id=value
+    def employee_id(self,employee_id):
+        if Employee.find_by_id(employee_id) :
+            self._employee_id=employee_id
         else:raise ValueError("Employee_id must be must be an instance that has been persisted to the employees table ")
     @classmethod
     def create_table(cls):
