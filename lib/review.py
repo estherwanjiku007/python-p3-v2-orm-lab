@@ -10,14 +10,14 @@ class Review:
 
     def __init__(self, year, summary, employee_id, id=None):
         self.id = id
-        self._year = year
-        self._summary = summary
-        self._employee_id = employee_id
+        self.year = year
+        self.summary = summary
+        self.employee_id = employee_id
 
     def __repr__(self):
         return (
-            f"<Review {self.id}: {self._year}, {self._summary}, "
-            + f"Employee: {self._employee_id}>"
+            f"<Review {self.id}: {self.year}, {self.summary}, "
+            + f"Employee: {self.employee_id}>"
         )
     
     @property
@@ -46,7 +46,7 @@ class Review:
     
     @employee_id.setter
     def employee_id(self,employee_id):
-        if Employee.find_by_id(employee_id) :
+        if isinstance(employee_id,int) and Employee.find_by_id(employee_id) :
             self._employee_id=employee_id
         else:raise ValueError("Employee_id must be must be an instance that has been persisted to the employees table ")
     @classmethod
@@ -112,7 +112,7 @@ class Review:
     def update(self):
         """Update the table row corresponding to the current Review instance."""
         sql="UPDATE reviews SET year=?, summary=?, employee_id=? WHERE id=? "
-        CURSOR.execute(sql,(self._year,self._summary,self._employee_id,self.id))
+        CURSOR.execute(sql,(self.year,self.summary,self.employee_id,self.id))
         
     def delete(self):
         """Delete the table row corresponding to the current Review instance,
